@@ -1,0 +1,8 @@
+repair_date,invoice_id,part_class,brand,description,est_credit,confidence,file_by,status
+2026-07-15,INV-1029,evaporator coil,Trane,Replaced Trane evaporator coil leaking refrigerant model 4TXCB003DS3,500,HIGH,2026-08-14,FILABLE
+2026-07-22,INV-1035,condenser fan motor,Rheem,Swapped bad Rheem condenser fan motor 51-102500-06 burnt windings,200,HIGH,2026-08-21,FILABLE
+2026-07-28,INV-1041,compressor,Carrier,Replaced failed Carrier compressor 25HCB6 unit under warranty - model 25HCB636A0,900,HIGH,2026-08-27,FILABLE
+2026-05-20,INV-0989,blower motor,Lennox,Replaced shorted Lennox blower motor ECM 60L21 failed,280,HIGH,2026-06-19,EXPIRED
+2026-06-12,INV-1002,capacitor,unknown,Capacitor replacement 45/5 MFD turbo,35,medium,2026-07-12,EXPIRED
+2026-06-24,INV-1010,water heater,Bradford White,Bradford White water heater replaced under warranty leaking tank RG240T6N,450,HIGH,2026-07-24,EXPIRED
+2026-06-30,INV-1015,control board,Goodman,Replaced defective control board Goodman PCBBF132S furnace,300,HIGH,2026-07-30,EXPIRED

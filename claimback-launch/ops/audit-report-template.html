@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Warranty Recovery Audit — {{COMPANY_NAME}}</title>
+<style>
+  /* Print to PDF: Cmd/Ctrl+P → Save as PDF → Letter, default margins */
+  :root{--ink:#16232e;--soft:#4a5a68;--brand:#0d6e5f;--accent:#c96f1e;--danger:#b03a2e;--line:#e4e1d8;--paper:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);padding:48px 56px;max-width:820px;margin:0 auto;line-height:1.45;font-size:14px}
+  header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:28px}
+  .logo{font-weight:800;font-size:1.15rem}.logo span{color:var(--brand)}
+  .meta{font-size:.8rem;color:var(--soft);text-align:right}
+  h1{font-size:1.35rem;letter-spacing:-.02em;margin-bottom:4px}
+  .sub{color:var(--soft);margin-bottom:24px}
+  .headline{background:#f2f9f7;border:1px solid #cde5df;border-radius:10px;padding:22px 26px;margin-bottom:26px;display:flex;justify-content:space-between;align-items:center}
+  .headline .label{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--soft)}
+  .headline .amount{font-size:2.2rem;font-weight:800;color:var(--brand);letter-spacing:-.03em}
+  .headline .period{font-size:.85rem;color:var(--soft)}
+  table{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:.85rem}
+  th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);border-bottom:2px solid var(--line);padding:8px 10px}
+  td{padding:9px 10px;border-bottom:1px solid var(--line)}
+  td.money{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  .deadline-ok{color:var(--accent);font-weight:700}
+  .deadline-gone{color:var(--danger);font-weight:700}
+  tfoot td{font-weight:800;border-top:2px solid var(--ink);border-bottom:none}
+  .note{font-size:.78rem;color:var(--soft);margin-bottom:26px}
+  .proj{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:26px}
+  .proj .box{border:1px solid var(--line);border-radius:10px;padding:16px 20px}
+  .proj .box .n{font-size:1.4rem;font-weight:800;color:var(--brand)}
+  .proj .box .l{font-size:.78rem;color:var(--soft)}
+  .next{background:#fdf3e7;border:1px solid #eed9bd;border-radius:10px;padding:20px 24px}
+  .next h2{font-size:1rem;margin-bottom:8px}
+  .next p{font-size:.9rem}
+  footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);font-size:.72rem;color:var(--soft)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Claim<span>Back</span></div>
+  <div class="meta">Warranty Recovery Audit<br>Prepared {{AUDIT_DATE}} · Confidential</div>
+</header>
+
+<h1>{{COMPANY_NAME}}</h1>
+<p class="sub">Audit window: {{WINDOW_START}} – {{WINDOW_END}} ({{N_INVOICES}} invoices reviewed)</p>
+
+<div class="headline">
+  <div>
+    <div class="label">Estimated unfiled warranty claims found</div>
+    <div class="period">in the last 90 days</div>
+  </div>
+  <div class="amount">${{TOTAL_FOUND}}</div>
+</div>
+
+<table>
+  <thead>
+    <tr><th>Repair date</th><th>Part / description</th><th>Brand</th><th>Est. credit</th><th>Files by</th></tr>
+  </thead>
+  <tbody>
+    <!-- Repeat per claim. Class: deadline-ok if filable, deadline-gone if expired -->
+    <tr><td>{{DATE}}</td><td>{{PART_DESC}}</td><td>{{BRAND}}</td><td class="money">${{EST_CREDIT}}</td><td class="deadline-ok">{{FILE_BY_DATE}}</td></tr>
+    <tr><td>{{DATE}}</td><td>{{PART_DESC}}</td><td>{{BRAND}}</td><td class="money">${{EST_CREDIT}}</td><td class="deadline-gone">EXPIRED {{EXPIRED_DATE}}</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="3">Still filable today</td><td class="money">${{FILABLE_TOTAL}}</td><td></td></tr>
+  </tfoot>
+</table>
+<p class="note">Estimates based on typical manufacturer credit values for the listed part classes. Final amounts set by manufacturer on approval. Rows marked EXPIRED passed the distributor's 30-day filing window and are shown so you can see the ongoing cost of not filing.</p>
+
+<div class="proj">
+  <div class="box"><div class="n">${{ANNUALIZED}}</div><div class="l">Annualized unfiled claims at this run rate</div></div>
+  <div class="box"><div class="n">${{YOUR_SHARE}}</div><div class="l">Your 75% share if ClaimBack files everything above</div></div>
+</div>
+
+<div class="next">
+  <h2>What we'd file this week if you say go</h2>
+  <p>{{N_FILABLE}} claims totaling ~${{FILABLE_TOTAL}} are still inside their filing window. We prepare and submit them through your existing distributor accounts — you sign one authorization letter, we handle the rest. <strong>No recovery, no fee.</strong> Reply to this email or call {{PHONE}} and we start today.</p>
+</div>
+
+<footer>ClaimBack LLC · Independent claims-filing service, not affiliated with any manufacturer · Figures are estimates, not guarantees · {{CONTACT_EMAIL}}</footer>
+
+</body>
+</html>
